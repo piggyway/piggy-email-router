@@ -1,0 +1,9 @@
+# Piggyway Email Router - forwards support@ and hello@ to the team inboxes
+
+name = "piggy-email-router"
+main = "src/worker.ts"
+compatibility_date = "2026-08-01"
+workers_dev = false
+
+[vars]
+FORWARD_TO = "yehan0504@gmail.com,zianwang9911@gmail.com"
