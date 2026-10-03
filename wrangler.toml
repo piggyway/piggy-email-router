@@ -1,4 +1,6 @@
-# Piggyway Email Router - forwards support@ and hello@ to the team inboxes
+# Piggyway Email Router - forwards support@ and hello@ to the team inboxes,
+# then stores the raw message in R2 and tells piggy-backend to ingest it.
+# Secret (wrangler secret put MAIL_INGEST_TOKEN): MAIL_INGEST_TOKEN, same value as on piggy-backend.
 
 name = "piggy-email-router"
 main = "src/worker.ts"
@@ -7,3 +9,15 @@ workers_dev = false
 
 [vars]
 FORWARD_TO = "yehan0504@gmail.com,zianwang9911@gmail.com"
+
+[[r2_buckets]]
+binding = "MAIL_BUCKET"
+bucket_name = "piggyway-mail"
+preview_bucket_name = "piggyway-mail-dev"
+
+[[services]]
+binding = "BACKEND"
+service = "piggy-backend"
+
+[observability]
+enabled = true
